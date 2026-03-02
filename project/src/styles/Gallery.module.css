@@ -10,6 +10,7 @@
   overflow: hidden;
 }
 
+/* toutes les images empilees, on joue sur l'opacite */
 .imageBg {
   position: absolute;
   top: 0;
@@ -18,16 +19,19 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: opacity 0.8s ease;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
   z-index: 0;
 }
 
-.visible {
+.imageActive {
   opacity: 1;
+  z-index: 1;
 }
 
-.hidden {
+.imageHidden {
   opacity: 0;
+  z-index: 0;
 }
 
 .overlay {
@@ -37,19 +41,34 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 1;
+  z-index: 2;
 }
 
-/* texte a gauche, pas centre */
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: left;
   padding: 0 60px;
   max-width: 700px;
 }
 
-/* gros titre avec une belle typo */
+/* le texte aussi fait un fondu */
+.texteBlock {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.texteActive {
+  opacity: 1;
+  position: relative;
+}
+
+.texteHidden {
+  opacity: 0;
+  position: absolute;
+}
+
 .titre {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 3.2rem;
@@ -67,7 +86,6 @@
   font-weight: 300;
 }
 
-/* les petits points cliquables, aussi a gauche */
 .dots {
   display: flex;
   justify-content: flex-start;

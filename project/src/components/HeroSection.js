@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { FaSearchLocation } from 'react-icons/fa'
 import styles from '../styles/Hero.module.css'
 
-// les videos dans l'ordre
 const videos = [
   '/videos/soleil.mp4',
   '/videos/nuages.mp4',
@@ -12,50 +11,32 @@ const videos = [
 
 export default function HeroSection() {
   const [videoActuelle, setVideoActuelle] = useState(0)
-  const [videoSuivante, setVideoSuivante] = useState(1)
-  const [enTransition, setEnTransition] = useState(false)
 
+  // on change de video toutes les 4 secondes
   useEffect(() => {
     const timer = setInterval(() => {
-      // on lance la transition
-      setEnTransition(true)
-
-      // apres 1 seconde (duree du fondu), on switch
-      setTimeout(() => {
-        setVideoActuelle(videoSuivante)
-        setVideoSuivante((videoSuivante + 1) % videos.length)
-        setEnTransition(false)
-      }, 1000)
+      setVideoActuelle((prev) => (prev + 1) % videos.length)
     }, 4000)
 
     return () => clearInterval(timer)
-  }, [videoSuivante])
+  }, [])
 
   return (
     <section className={styles.hero}>
-      {/* video actuelle (en dessous) */}
-      <video
-        key={`current-${videoActuelle}`}
-        className={`${styles.videoBg} ${styles.videoBack}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src={videos[videoActuelle]} type="video/mp4" />
-      </video>
-
-      {/* video suivante (par dessus, apparait en fondu) */}
-      <video
-        key={`next-${videoSuivante}`}
-        className={`${styles.videoBg} ${styles.videoFront} ${enTransition ? styles.fadeIn : styles.fadeOut}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src={videos[videoSuivante]} type="video/mp4" />
-      </video>
+      {/* toutes les videos sont chargees des le debut, on joue juste sur l'opacite */}
+      {videos.map((src, i) => (
+        <video
+          key={src}
+          className={`${styles.videoBg} ${i === videoActuelle ? styles.videoActive : styles.videoHidden}`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ))}
 
       <div className={styles.overlay}></div>
 

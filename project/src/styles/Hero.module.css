@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-/* les deux videos empilees l'une sur l'autre */
+/* toutes les videos empilees les unes sur les autres */
 .videoBg {
   position: absolute;
   top: 50%;
@@ -17,24 +17,20 @@
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
-}
-
-.videoBack {
   z-index: 0;
-}
-
-.videoFront {
-  z-index: 1;
-  transition: opacity 1s ease-in-out;
-}
-
-/* fondu croise */
-.fadeIn {
-  opacity: 1;
-}
-
-.fadeOut {
   opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+/* celle qui est active devient visible, les autres restent cachees */
+.videoActive {
+  opacity: 1;
+  z-index: 1;
+}
+
+.videoHidden {
+  opacity: 0;
+  z-index: 0;
 }
 
 .overlay {
