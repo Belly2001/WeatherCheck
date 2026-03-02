@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { FaSearch } from 'react-icons/fa'
@@ -9,17 +9,37 @@ import Previsions from '../components/Previsions'
 import { getMeteoActuelle, getPrevisions } from '../utils/weather'
 import styles from '../styles/Meteo.module.css'
 
-export default function Meteo() {
+// on recupere la ville depuis l'URL cote serveur
+export async function getServerSideProps(context) {
+  const ville = context.query.ville || ''
+  let meteo = null
+  let previsions = []
+
+  if (ville) {
+    const [meteoData, previsionsData] = await Promise.all([
+      getMeteoActuelle(ville),
+      getPrevisions(ville)
+    ])
+    meteo = meteoData
+    previsions = previsionsData
+  }
+
+  return {
+    props: { villeInitiale: ville, meteoInitiale: meteo, previsionsInitiales: previsions }
+  }
+}
+
+export default function Meteo({ villeInitiale, meteoInitiale, previsionsInitiales }) {
   const router = useRouter()
-  const [ville, setVille] = useState('')
-  const [meteo, setMeteo] = useState(null)
-  const [previsions, setPrevisions] = useState([])
+  const [ville, setVille] = useState(villeInitiale)
+  const [meteo, setMeteo] = useState(meteoInitiale)
+  const [previsions, setPrevisions] = useState(previsionsInitiales)
   const [loading, setLoading] = useState(false)
   const [erreur, setErreur] = useState('')
 
-  // la fonction qui va chercher la meteo
-  const chercher = useCallback(async (nomVille) => {
-    if (!nomVille.trim()) return
+  // quand on tape une ville et on cherche
+  async function chercher() {
+    if (!ville.trim()) return
 
     setLoading(true)
     setErreur('')
@@ -27,8 +47,8 @@ export default function Meteo() {
     setPrevisions([])
 
     const [meteoData, previsionsData] = await Promise.all([
-      getMeteoActuelle(nomVille),
-      getPrevisions(nomVille)
+      getMeteoActuelle(ville),
+      getPrevisions(ville)
     ])
 
     if (!meteoData) {
@@ -39,22 +59,7 @@ export default function Meteo() {
     }
 
     setLoading(false)
-  }, [])
-
-// si on arrive avec une ville dans l'URL (depuis le hero)
-  useEffect(() => {
-    const villeURL = router.query.ville
-    if (villeURL) {
-      setVille(villeURL)
-    }
-  }, [router.query.ville])
-
-  // quand la ville change depuis l'URL, on lance la recherche
-  useEffect(() => {
-    if (router.query.ville && ville === router.query.ville) {
-      chercher(ville)
-    }
-  }, [ville, router.query.ville, chercher])
+  }
 
   return (
     <>
@@ -76,11 +81,11 @@ export default function Meteo() {
                 value={ville}
                 onChange={(e) => setVille(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') chercher(ville)
+                  if (e.key === 'Enter') chercher()
                 }}
                 className={styles.searchInput}
               />
-              <button className={styles.searchBtn} onClick={() => chercher(ville)}>
+              <button className={styles.searchBtn} onClick={chercher}>
                 <FaSearch />
               </button>
             </div>
