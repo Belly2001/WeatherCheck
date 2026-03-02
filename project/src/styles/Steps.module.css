@@ -1,0 +1,87 @@
+.section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: var(--bleu-bg);
+}
+
+.titre {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--noir);
+  margin-bottom: 10px;
+}
+
+.sousTitre {
+  color: var(--gris);
+  font-size: 1.05rem;
+  margin-bottom: 50px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 260px;
+  max-width: 300px;
+  padding: 35px 25px;
+  border-radius: 16px;
+  background-color: var(--blanc);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.iconWrapper {
+  width: 55px;
+  height: 55px;
+  background-color: var(--bleu-primary);
+  color: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 15px;
+}
+
+.numero {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--bleu-light);
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--noir);
+}
+
+.card p {
+  font-size: 0.92rem;
+  color: var(--gris);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .titre {
+    font-size: 1.8rem;
+  }
+
+  .grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}

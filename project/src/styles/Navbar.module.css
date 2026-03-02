@@ -1,0 +1,78 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background-color: var(--fond-sombre);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--bleu-light);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.logoIcon {
+  font-size: 1.4rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  color: var(--blanc);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btnDeconnexion {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blanc);
+  background-color: var(--bleu-primary);
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.btnDeconnexion:hover {
+  background-color: var(--bleu-dark);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .links {
+    display: none;
+  }
+}
