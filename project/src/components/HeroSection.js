@@ -42,9 +42,8 @@ export default function HeroSection() {
 
       <div className={styles.content}>
         <h1 className={styles.titre}>
-          LA MÉTÉO,<br />
-          OÙ QUE<br />
-          TU SOIS
+          Check la météo,<br />
+          où que tu sois en un clic!
         </h1>
         <p className={styles.sousTitre}>
           Tape le nom d'une ville et découvre la météo en temps réel.
