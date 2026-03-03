@@ -3,7 +3,7 @@
 .page {
   min-height: 100vh;
   padding-top: 70px;
-  background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1b2a 100%);
+  background-image: linear-gradient(to right bottom, #05284a, #0f406b, #175b8d, #1a77b1, #1794d6);
 }
 
 .container {

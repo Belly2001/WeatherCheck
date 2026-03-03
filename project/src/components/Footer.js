@@ -16,7 +16,7 @@ export default function Footer() {
           <a href="https://github.com/Belly2001" target="_blank" rel="noreferrer">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/ton-profil" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/don-belly-star-ndanga/" target="_blank" rel="noreferrer">
             <FaLinkedin />
           </a>
           <a href="mailto:ndangadonbellystar@gmail.com">
