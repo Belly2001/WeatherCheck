@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import styles from '../styles/Gallery.module.css'
 
 const images = [
-  { src: '/images/sun.jpg', texte: 'Profite du soleil ☀️', desc: 'Journée parfaite pour sortir. Pense à la crème solaire !' },
-  { src: '/images/cloud.jpg', texte: 'Ciel couvert 🌥️', desc: 'Les nuages arrivent. Garde un oeil sur les prévisions.' },
-  { src: '/images/rain.jpg', texte: 'Pluie en vue 🌧️', desc: 'N\'oublie pas ton parapluie avant de partir !' },
-  { src: '/images/neige.jpg', texte: 'Temps hivernal ❄️', desc: 'Couvre-toi bien, les températures chutent.' }
+  { src: '/images/sun.jpg', texte: 'Profite du soleil ', desc: 'Journée parfaite pour sortir. Pense à la crème solaire !' },
+  { src: '/images/cloud.jpg', texte: 'Ciel couvert ', desc: 'Les nuages arrivent. Garde un oeil sur les prévisions.' },
+  { src: '/images/rain.jpg', texte: 'Pluie en vue ', desc: 'N\'oublie pas ton parapluie avant de partir !' },
+  { src: '/images/neige.jpg', texte: 'Temps hivernal ', desc: 'Couvre-toi bien, les températures chutent.' }
 ]
 
 export default function Gallery() {
